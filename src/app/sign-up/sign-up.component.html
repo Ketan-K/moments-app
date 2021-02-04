@@ -12,7 +12,7 @@
                         <label>First Name</label>
                         <div class="form-fields">
                             <mat-icon>person_outline</mat-icon>
-                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                            <input matInput [(ngModel)]="userInfo.firstname" type="text" />
                         </div>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -21,7 +21,7 @@
                         <label>Last Name</label>
                         <div class="form-fields">
                             <mat-icon>person_outline</mat-icon>
-                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                            <input matInput [(ngModel)]="userInfo.lastname" type="text" />
                         </div>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -30,7 +30,7 @@
                         <label>Mobile No.</label>
                         <div class="form-fields">
                             <mat-icon>phone</mat-icon>
-                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                            <input matInput [(ngModel)]="userInfo.mobile" type="text" />
                         </div>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -39,7 +39,7 @@
                         <label>Email-ID</label>
                         <div class="form-fields">
                             <mat-icon>mail_outline</mat-icon>
-                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                            <input matInput [(ngModel)]="userInfo.email" type="email" />
                         </div>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -47,7 +47,7 @@
                     <mat-form-field class="full-width ">
                         <label>City</label>
                         <div class="form-fields">
-                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                            <input matInput [(ngModel)]="userInfo.city" type="text" />
                         </div>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -56,18 +56,15 @@
                         <label>Enter Password</label>
                         <div class="form-fields">
                             <mat-icon>lock_outline</mat-icon>
-                            <input matInput [type]="hide ? 'password' : 'text'">
+                            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userInfo.password" />
                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                              [attr.aria-pressed]="hide">
-                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>          
-                          </div>
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </div>
                     </mat-form-field>
                 </mat-grid-tile>
-
-
             </mat-grid-list>
-
             <mat-card-actions>
                 <button mat-raised-button color="primary" (click)="signUp(userInfo)">Submit</button>
             </mat-card-actions>
