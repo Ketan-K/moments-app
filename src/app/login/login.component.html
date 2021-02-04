@@ -1,0 +1,40 @@
+<app-auth-navbar></app-auth-navbar>
+
+<div class="login-container">
+  <div row="login" class="login">
+    <h1 class="row signInText center">Sign In</h1>
+    <div class="row center">
+      <h3>To start using the app</h3>
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <mat-form-field class="full-width ">
+          <label>Enter email id</label>
+          <div class="form-fields">
+            <mat-icon>mail_outline</mat-icon>
+            <input matInput [(ngModel)]="userInfo.email" type="text"/>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <label>Enter password</label>
+          <div class="form-fields">
+            <mat-icon>lock_outline</mat-icon>
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userInfo.password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </div>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="login(userInfo)">Sign In</button>
+      </mat-card-actions>
+    </mat-card>
+    <div class="row support center">
+      <h3>Not a member ? <strong class="pointer" routerLink='/signup'>Sign Up</strong></h3>
+    </div>
+  </div>
+
+
+</div>

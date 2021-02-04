@@ -1,0 +1,79 @@
+<app-auth-navbar></app-auth-navbar>
+<div class="signup-container">
+    <div row="signup" class="signup-row">
+        <h1 class="row signInText center">Sign Up</h1>
+        <div class="row center">
+            <h3>To be a member</h3>
+        </div>
+        <mat-card>
+            <mat-grid-list [cols]="breakpoint" rowHeight="2:0.7" (window:resize)="onResize($event)">
+                <mat-grid-tile>
+                    <mat-form-field class="full-width ">
+                        <label>First Name</label>
+                        <div class="form-fields">
+                            <mat-icon>person_outline</mat-icon>
+                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                        </div>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width ">
+                        <label>Last Name</label>
+                        <div class="form-fields">
+                            <mat-icon>person_outline</mat-icon>
+                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                        </div>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width ">
+                        <label>Mobile No.</label>
+                        <div class="form-fields">
+                            <mat-icon>phone</mat-icon>
+                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                        </div>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width ">
+                        <label>Email-ID</label>
+                        <div class="form-fields">
+                            <mat-icon>mail_outline</mat-icon>
+                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                        </div>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width ">
+                        <label>City</label>
+                        <div class="form-fields">
+                            <input matInput [(ngModel)]="userInfo.email" type="text" name="email" />
+                        </div>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width ">
+                        <label>Enter Password</label>
+                        <div class="form-fields">
+                            <mat-icon>lock_outline</mat-icon>
+                            <input matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>          
+                          </div>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+
+            </mat-grid-list>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="signUp(userInfo)">Submit</button>
+            </mat-card-actions>
+        </mat-card>
+        <div class="row support center">
+            <h3>Already a member? <strong class="pointer" routerLink='/login'>Sign in</strong></h3>
+        </div>
+    </div>
+</div>
