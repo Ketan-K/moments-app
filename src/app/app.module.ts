@@ -9,6 +9,7 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthNavbarComponent } from './auth-navbar/auth-navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthNavbarComponent } from './auth-navbar/auth-navbar.component';
     MaterialModule,
     AppRoutingModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
