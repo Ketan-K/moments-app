@@ -13,10 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { MomentsListComponent } from './moments-list/moments-list.component';
 import { MomentsComponent } from './moments/moments.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { DndDirective } from './dnd.directive';
+import { ProgressComponent } from './progress/progress.component';
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsListComponent, MomentsComponent
+    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsListComponent, MomentsComponent, FileUploadComponent, DndDirective, ProgressComponent
   ],
   imports: [
     BrowserModule,

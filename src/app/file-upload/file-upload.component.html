@@ -1,0 +1,35 @@
+<mat-grid-list cols="2" rowHeight="125px">
+    <mat-grid-tile>
+        <div *ngIf="file" class="files-list">
+            <div class="single-file">
+                <div class="file-icon" style="width: 50px">
+                    <mat-icon>image</mat-icon>
+                </div>
+                <div class="info">
+                    <h4 class="name">
+                        {{ file?.name }}
+                    </h4>
+                    <p class="size">
+                        {{ formatBytes(file?.size) }}
+                    </p>
+                    <app-progress [progress]="file?.progress"></app-progress>
+                </div>
+
+                <div class="delete" (click)="deleteFile()">
+                    <mat-icon>delete</mat-icon>
+                </div>
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan=2>
+        <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+            <input type="file" accept="image/*" #fileDropRef id="fileDropRef"
+                (change)="fileBrowseHandler($event.target)" />
+            <mat-icon>file_upload</mat-icon>
+
+            <h3>Drag and drop file here</h3>
+            <h3>or</h3>
+            <label for="fileDropRef">Browse for file</label>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

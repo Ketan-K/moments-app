@@ -1,1 +1,25 @@
-<p>moments works!</p>
+<mat-card class="container">
+    <mat-grid-list cols="2" rowHeight="125px" class="inner-container">
+        <mat-grid-tile colspan=2>
+            <mat-form-field class="full-width">
+                <label>Title</label>
+                <input matInput [(ngModel)]="title" type="text" />
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field class="example-chip-list" class="full-width">
+                <label>Tags</label>
+                <mat-chip-list #chipList aria-label="tag selection">
+                    <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(tag)">
+                        {{tag}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <app-file-upload></app-file-upload>
+</mat-card>
