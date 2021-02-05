@@ -13,13 +13,7 @@ export class ApiService {
   private apiUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient, private router: Router, private data: DataService) { }
 
-  handleError(error: any) {
-    if (error instanceof HttpErrorResponse && error.status === 401) {
-      this.router.navigateByUrl("/login");
-    }
-    return throwError(error.message || 'Internal Server Error')
 
-  }
   setHeaders() {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     let user = this.data.getUser();
@@ -32,16 +26,12 @@ export class ApiService {
 
   makePostReq(path: string, data: any) {
     return this.http.post(`${this.apiUrl}${path}`, data, { headers: this.setHeaders() })
-      .pipe(
-        catchError(this.handleError)
-      );
+
   }
 
   makeGetReq(path: string) {
     return this.http.get(`${this.apiUrl}${path}`, { headers: this.setHeaders() })
-      .pipe(
-        catchError(this.handleError)
-      );
+
   }
 
 

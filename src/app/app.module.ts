@@ -9,7 +9,7 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthNavbarComponent } from './auth-navbar/auth-navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { MomentsListComponent } from './moments-list/moments-list.component';
 import { MomentsComponent } from './moments/moments.component';
@@ -17,6 +17,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
 import { MomentsTableComponent } from './moments-table/moments-table.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { MomentsTableComponent } from './moments-table/moments-table.component';
     NgxSpinnerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

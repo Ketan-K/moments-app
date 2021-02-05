@@ -16,7 +16,7 @@ export class DataService {
   }
 
   getUser() {
-    return JSON.parse(localStorage.getItem('userInfo') || '');
+    return JSON.parse(localStorage.getItem('userInfo') || '{}');
   }
 
 }

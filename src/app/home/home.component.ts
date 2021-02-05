@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   moments = [];
   constructor(private api: ApiService,
     private spinner: NgxSpinnerService,
-    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
