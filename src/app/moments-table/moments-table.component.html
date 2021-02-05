@@ -1,5 +1,6 @@
-<mat-card class="card-row"><strong>Moments</strong></mat-card>
-<div class="mat-elevation-z8">
+<mat-card class="card-row"><strong>{{momentsData.length ? 'Moments' : 'No moments here, please add some
+        moments'}}</strong></mat-card>
+<div *ngIf="momentsData.length" class="mat-elevation-z8">
     <table>
         <thead>
             <tr>

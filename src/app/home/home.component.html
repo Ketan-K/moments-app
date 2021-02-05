@@ -47,7 +47,7 @@
     </p>
 
     <div class="sidenav-content">
-        <app-moments-table *ngIf="show ==='list' && moments.length" [momentsData]="moments"></app-moments-table>
+        <app-moments-table *ngIf="show ==='list'" [momentsData]="moments"></app-moments-table>
         <app-moments *ngIf="show ==='add-new'"></app-moments>
     </div>
 
