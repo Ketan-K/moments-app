@@ -1,9 +1,10 @@
+<mat-card class="container"><strong>Add moment</strong></mat-card>
 <mat-card class="container">
     <mat-grid-list cols="2" rowHeight="125px" class="inner-container">
         <mat-grid-tile colspan=2>
             <mat-form-field class="full-width">
                 <label>Title</label>
-                <input matInput [(ngModel)]="title" type="text" />
+                <input matInput [(ngModel)]="moment.title" type="text" />
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -21,5 +22,8 @@
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
-    <app-file-upload></app-file-upload>
+    <app-file-upload (getPath)="imagePath($event)"></app-file-upload>
+    <mat-card-actions class="button-row">
+        <button mat-raised-button class="submit-button" color="primary" (click)="addMoment()">Submit</button>
+    </mat-card-actions>
 </mat-card>

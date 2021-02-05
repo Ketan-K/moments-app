@@ -1,6 +1,7 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
@@ -8,6 +9,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent implements OnInit {
+  @Output() getPath = new EventEmitter<string>();
 
   constructor(private api: ApiService) { }
 
@@ -17,22 +19,25 @@ export class FileUploadComponent implements OnInit {
 
   imageUrl: string = '';
 
+  sendPath(value: string) {
+    this.getPath.emit(value);
+  }
+
   onFileDropped($event: any) {
     this.prepareFilesList($event);
-    $event = []
   }
 
 
   fileBrowseHandler(event: any) {
     this.prepareFilesList(event.files);
-    event.files = [];
   }
 
 
   deleteFile() {
     let image = this.imageUrl
     this.file = null;
-    this.imageUrl = ''
+    this.imageUrl = '';
+    this.sendPath(this.imageUrl)
     this.api.deleteFile(image).subscribe();
   }
 
@@ -43,8 +48,8 @@ export class FileUploadComponent implements OnInit {
         if (event.type === HttpEventType.UploadProgress) {
           this.file.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          console.log(event.body)
           this.imageUrl = event.body.data
+          this.sendPath(this.imageUrl)
         }
       },
       err => {

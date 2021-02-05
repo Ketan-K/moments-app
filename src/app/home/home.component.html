@@ -24,9 +24,10 @@
                         Moments
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p class="pointer" (click)="show='list'">
-                    Moment List</p>
-                <p class="pointer" (click)="show='add-new'">Add new moment</p>
+                <li class="pointer plist" (click)="show='list'" [class.backg]="show === 'list'">
+                    Moment List</li>
+                <li class="pointer plist" (click)="show='add-new'" [class.backg]="show === 'add-new'">Add new moment
+                </li>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-drawer>
@@ -46,8 +47,8 @@
     </p>
 
     <div class="sidenav-content">
-        <mat-card><strong>Moments</strong></mat-card>
-        <app-moments></app-moments>
+        <app-moments-table *ngIf="show ==='list' && moments.length" [momentsData]="moments"></app-moments-table>
+        <app-moments *ngIf="show ==='add-new'"></app-moments>
     </div>
 
 </mat-drawer-container>

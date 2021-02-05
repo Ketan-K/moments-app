@@ -11,6 +11,7 @@ import { ApiService } from '../services/api.service';
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   show = 'list';
+  moments = [];
   constructor(private api: ApiService,
     private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
     this.api.getMoments().subscribe((result: any) => {
       this.spinner.hide();
       console.log(result);
+      this.moments = result.data || [];
     }, (err) => {
       this.spinner.hide();
     })

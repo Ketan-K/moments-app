@@ -1,0 +1,91 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.card-row {
+    font-size: large;
+    font-weight: bold;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+th {
+    margin: 20px;
+    padding: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.table-row {
+    margin: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+td {
+    padding: 15px;
+}
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    tr:nth-child(odd) {
+        background: #ccc;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        position: absolute;
+        font-weight: bold;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before {
+        content: "Sr.No";
+    }
+
+    td:nth-of-type(2):before {
+        content: "Image";
+    }
+
+    td:nth-of-type(3):before {
+        content: "Title";
+    }
+
+    td:nth-of-type(4):before {
+        content: "Tags";
+    }
+
+    td:nth-of-type(5):before {
+        content: "Actions";
+    }
+}

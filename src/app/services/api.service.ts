@@ -53,6 +53,10 @@ export class ApiService {
     return this.makePostReq('/user/login', userInfo);
   }
 
+  addMoment(moment: any) {
+    return this.makePostReq('/moments', moment);
+  }
+
   getMoments() {
     return this.makeGetReq('/moments');
   }

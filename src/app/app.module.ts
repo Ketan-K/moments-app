@@ -16,10 +16,11 @@ import { MomentsComponent } from './moments/moments.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
+import { MomentsTableComponent } from './moments-table/moments-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsListComponent, MomentsComponent, FileUploadComponent, DndDirective, ProgressComponent
+    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsListComponent, MomentsComponent, FileUploadComponent, DndDirective, ProgressComponent, MomentsTableComponent
   ],
   imports: [
     BrowserModule,
