@@ -10,10 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthNavbarComponent } from './auth-navbar/auth-navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { MomentsListComponent } from './moments-list/moments-list.component';
+import { MomentsComponent } from './moments/moments.component';
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent
+    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsListComponent, MomentsComponent
   ],
   imports: [
     BrowserModule,

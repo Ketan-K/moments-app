@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../services/api.service';
+import { DataService } from '../services/data.service';
 
 // import { UserInfo } from '../shared/interfaces/auth.interface';
 // import { AuthService } from '../shared/services/auth.service';
@@ -12,6 +13,7 @@ import { ApiService } from '../services/api.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   title = 'Solutions';
   userInfo: any = {
@@ -23,8 +25,8 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,
     private api: ApiService,
+    private data: DataService,
     private router: Router) { }
-
 
   ngOnInit(): void {
   }
@@ -46,9 +48,11 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       this.openSnackBar(result.message, '')
       if (result.status) {
-        this.router.navigateByUrl("/signup");
+        console.log(result);
+        this.data.saveUser(result.data);
+        return this.router.navigateByUrl("/home");
       }
-      console.log(result);
+      return;
     }, (err) => {
       this.spinner.hide();
       this.openSnackBar(err.message || 'Internal server error', '')
