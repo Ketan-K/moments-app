@@ -34,11 +34,11 @@
 
     <p>
         <mat-toolbar>
-            <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label=" Menu">
+            <button mat-icon-button (click)="drawer.toggle()" aria-label=" Menu">
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon right" aria-label="Profile">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="right" aria-label="Profile">
                 <mat-icon>person</mat-icon>
                 <mat-icon>expand_more</mat-icon>
                 <mat-menu #menu="matMenu">

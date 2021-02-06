@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   setHeaders() {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    let headers = new HttpHeaders({});
     let user = this.data.getUser();
     if (user.authToken) {
       headers = headers.append('authToken', user.authToken);

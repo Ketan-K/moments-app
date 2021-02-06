@@ -22,7 +22,14 @@
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
-    <app-file-upload [file]="moment.file" (getPath)="imagePath($event)"></app-file-upload>
+
+    <div *ngIf="moment.imageUrl ">
+        <button mat-icon-button class="right" aria-label="Remove image" (click)="moment.imageUrl=''">
+            <mat-icon>delete_forever</mat-icon>
+        </button>
+        <img class="image-preview" [src]="baseUrl+'/'+moment.imageUrl" />
+    </div>
+    <app-file-upload *ngIf="!moment.imageUrl " [file]="moment.file" (getPath)="imagePath($event)"></app-file-upload>
     <mat-card-actions class="button-row">
         <button mat-raised-button class="submit-button" color="primary" (click)="addMoment()">{{moment.momentID ?
             'Update' : 'Submit'}}</button>

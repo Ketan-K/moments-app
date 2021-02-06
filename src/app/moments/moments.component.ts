@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../services/api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-moments',
@@ -12,6 +13,7 @@ import { ApiService } from '../services/api.service';
 })
 export class MomentsComponent implements OnInit {
   @Output() done = new EventEmitter<any>()
+  baseUrl = environment.apiBaseUrl;
   visible = true;
   selectable = true;
   removable = true;
