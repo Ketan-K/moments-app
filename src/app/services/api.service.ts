@@ -1,39 +1,26 @@
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment'
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { DataService } from './data.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private apiUrl = environment.apiBaseUrl;
-  constructor(private http: HttpClient, private router: Router, private data: DataService) { }
-
-
-  setHeaders() {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
-    let user = this.data.getUser();
-    if (user.authToken) {
-      headers = headers.append('authToken', user.authToken);
-    }
-    console.log('Userrrrr', user, headers)
-    return headers;
-  }
+  constructor(private http: HttpClient) { }
 
   makePostReq(path: string, data: any) {
-    return this.http.post(`${this.apiUrl}${path}`, data, { headers: this.setHeaders() })
-
+    return this.http.post(`${this.apiUrl}${path}`, data)
   }
 
   makeGetReq(path: string) {
-    return this.http.get(`${this.apiUrl}${path}`, { headers: this.setHeaders() })
-
+    return this.http.get(`${this.apiUrl}${path}`)
   }
 
+  makeDeleteReq(path: string) {
+    return this.http.delete(`${this.apiUrl}${path}`)
+  }
 
   signUp(userInfo: any) {
     return this.makePostReq('/user/register', userInfo);
@@ -62,6 +49,11 @@ export class ApiService {
   }
 
   deleteFile(filepath: any) {
-    return this.http.delete(`${this.apiUrl}/image/${filepath}`);
+    return this.makeDeleteReq(`/image/${filepath}`);
   }
+
+  deleteMoment(momentID: any) {
+    return this.makeDeleteReq(`/moments/${momentID}`);
+  }
+
 }

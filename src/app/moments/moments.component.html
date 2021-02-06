@@ -1,4 +1,4 @@
-<mat-card class="container"><strong>Add moment</strong></mat-card>
+<mat-card class="container"><strong>{{moment.momentID ? 'Update moment' : 'Add moment'}}</strong></mat-card>
 <mat-card class="container">
     <mat-grid-list cols="2" rowHeight="125px" class="inner-container">
         <mat-grid-tile colspan=2>
@@ -11,7 +11,7 @@
             <mat-form-field class="example-chip-list" class="full-width">
                 <label>Tags</label>
                 <mat-chip-list #chipList aria-label="tag selection">
-                    <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+                    <mat-chip *ngFor="let tag of moment.tags" [selectable]="selectable" [removable]="removable"
                         (removed)="remove(tag)">
                         {{tag}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -22,8 +22,9 @@
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
-    <app-file-upload [(file)]="file" (getPath)="imagePath($event)"></app-file-upload>
+    <app-file-upload [file]="moment.file" (getPath)="imagePath($event)"></app-file-upload>
     <mat-card-actions class="button-row">
-        <button mat-raised-button class="submit-button" color="primary" (click)="addMoment()">Submit</button>
+        <button mat-raised-button class="submit-button" color="primary" (click)="addMoment()">{{moment.momentID ?
+            'Update' : 'Submit'}}</button>
     </mat-card-actions>
 </mat-card>

@@ -1,10 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../services/api.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-moments',
@@ -12,36 +11,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./moments.component.scss']
 })
 export class MomentsComponent implements OnInit {
-  @Output() added = new EventEmitter<any>()
-  tags: string[] = [];
+  @Output() done = new EventEmitter<any>()
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
-  file: any;
+  tags: string[] = []
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  moment = {
+  @Input() moment = {
+    momentID: null,
     title: '',
     tags: this.tags,
-    imageUrl: ''
+    imageUrl: '',
+    file: null
   }
+
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    this.tags.push(value)
+    this.moment.tags.push(value)
     input.value = ''
   }
 
   remove(tag: any): void {
-    const index = this.tags.indexOf(tag);
+    const index = this.moment.tags.indexOf(tag);
     if (index >= 0) {
-      this.tags.splice(index, 1);
+      this.moment.tags.splice(index, 1);
     }
   }
 
   constructor(private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,
-    private api: ApiService,) { }
+    private api: ApiService) { }
 
 
   ngOnInit(): void {
@@ -72,13 +73,14 @@ export class MomentsComponent implements OnInit {
       this.openSnackBar(result.message, '')
       if (result.status) {
         console.log(result);
-        this.file = null
         this.moment = {
+          momentID: null,
           title: '',
-          tags: this.tags = [],
-          imageUrl: ''
+          tags: this.moment.tags = [],
+          imageUrl: '',
+          file: null
         }
-        this.added.emit(result.data);
+        this.done.emit(result.data);
       }
       return;
     }, (err: any) => {

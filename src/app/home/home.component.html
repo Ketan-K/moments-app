@@ -51,8 +51,8 @@
     </p>
 
     <div class="sidenav-content">
-        <app-moments-table *ngIf="show ==='list'" [momentsData]="moments"></app-moments-table>
-        <app-moments *ngIf="show ==='add-new'" (added)="onAdded($event)">
+        <app-moments-table *ngIf="show ==='list'" [(momentsData)]="moments"></app-moments-table>
+        <app-moments *ngIf="show ==='add-new'" (done)="onAdded($event)">
         </app-moments>
     </div>
 

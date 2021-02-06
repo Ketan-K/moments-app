@@ -11,7 +11,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthNavbarComponent } from './auth-navbar/auth-navbar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { MomentsListComponent } from './moments-list/moments-list.component';
 import { MomentsComponent } from './moments/moments.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DndDirective } from './dnd.directive';
@@ -21,7 +20,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsListComponent, MomentsComponent, FileUploadComponent, DndDirective, ProgressComponent, MomentsTableComponent
+    AppComponent, LoginComponent, SignUpComponent, AuthNavbarComponent, HomeComponent, MomentsComponent, FileUploadComponent, DndDirective, ProgressComponent, MomentsTableComponent
   ],
   imports: [
     BrowserModule,

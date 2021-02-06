@@ -1,29 +1,32 @@
-<mat-card class="card-row"><strong>{{momentsData.length ? 'Moments' : 'No moments here, please add some
-        moments'}}</strong></mat-card>
-<div *ngIf="momentsData.length" class="mat-elevation-z8">
-    <table>
-        <thead>
-            <tr>
-                <th>Sr.No</th>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Tags</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let moment of momentsData ;index as i" class="table-row">
-                <td>{{i+1}}</td>
-                <td> <img [src]="baseUrl+'/'+moment.imageUrl" alt="" height=50 width=50 style="border-radius: 50%" />
-                </td>
-                <td>{{moment.title}}</td>
-                <td>{{moment.tags[0]}}</td>
-                <td>
-                    <mat-icon>edit</mat-icon>&nbsp;
-                    <mat-icon>delete_outline</mat-icon>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+<div *ngIf=!editMoment>
+    <mat-card class="card-row"><strong>{{momentsData.length ? 'Moments' : 'No moments here, please add some
+            moments'}}</strong></mat-card>
+    <div *ngIf="momentsData.length" class="mat-elevation-z8">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Tags</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let moment of momentsData ;index as i" class="table-row">
+                    <td>{{i+1}}</td>
+                    <td> <img [src]="baseUrl+'/'+moment.imageUrl" alt="" height=50 width=50
+                            style="border-radius: 50%" />
+                    </td>
+                    <td>{{moment.title}}</td>
+                    <td>{{moment.tags[0] || ''}}</td>
+                    <td>
+                        <mat-icon class="pointer" (click)="edit(i)">edit</mat-icon>&nbsp;
+                        <mat-icon class="pointer" (click)="delete(i)">delete_outline</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+<app-moments *ngIf="editMoment" [(moment)]="moment" (done)="editDone()"> </app-moments>
