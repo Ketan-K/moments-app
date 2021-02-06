@@ -27,11 +27,11 @@ export class SignUpComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (window.innerWidth <= 650) ? 1 : 2;
   }
 
   onResize(event: any) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (event.target.innerWidth <= 650) ? 1 : 2;
   }
 
   openSnackBar(message: string, action: string) {
