@@ -22,7 +22,7 @@
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
-    <app-file-upload (getPath)="imagePath($event)"></app-file-upload>
+    <app-file-upload [(file)]="file" (getPath)="imagePath($event)"></app-file-upload>
     <mat-card-actions class="button-row">
         <button mat-raised-button class="submit-button" color="primary" (click)="addMoment()">Submit</button>
     </mat-card-actions>

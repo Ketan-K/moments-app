@@ -12,7 +12,7 @@ import { DataService } from '../services/data.service';
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   show = 'list';
-  moments = [];
+  moments = <any>[];
   constructor(private api: ApiService,
     private data: DataService,
     private spinner: NgxSpinnerService,
@@ -37,6 +37,11 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  onAdded(moment: any) {
+    console.log(moment);
+    this.moments.push(moment);
+    this.show = 'list';
+  }
   logout() {
     this.spinner.show();
     this.data.eraseData()

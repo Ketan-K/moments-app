@@ -1,5 +1,5 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Output, EventEmitter } from '@angular/core';
 
@@ -10,18 +10,15 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class FileUploadComponent implements OnInit {
   @Output() getPath = new EventEmitter<string>();
-
-  constructor(private api: ApiService) { }
-
-  ngOnInit(): void {
-  }
-  file: any;
-
+  @Input() file: any;
   imageUrl: string = '';
 
   sendPath(value: string) {
     this.getPath.emit(value);
   }
+
+  constructor(private api: ApiService) { }
+  ngOnInit(): void { }
 
   onFileDropped($event: any) {
     this.prepareFilesList($event);

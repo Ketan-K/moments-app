@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,11 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./moments.component.scss']
 })
 export class MomentsComponent implements OnInit {
+  @Output() added = new EventEmitter<any>()
   tags: string[] = [];
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  file: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   moment = {
     title: '',
@@ -39,8 +41,7 @@ export class MomentsComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService,
     private _snackBar: MatSnackBar,
-    private api: ApiService,
-    private router: Router) { }
+    private api: ApiService,) { }
 
 
   ngOnInit(): void {
@@ -71,7 +72,13 @@ export class MomentsComponent implements OnInit {
       this.openSnackBar(result.message, '')
       if (result.status) {
         console.log(result);
-        return this.router.navigateByUrl("/home");
+        this.file = null
+        this.moment = {
+          title: '',
+          tags: this.tags = [],
+          imageUrl: ''
+        }
+        this.added.emit(result.data);
       }
       return;
     }, (err: any) => {
