@@ -45,13 +45,13 @@ export class LoginComponent implements OnInit {
     if (!this.validateInputs(userInfo)) { return; };
     this.spinner.show();
     this.api.logIn(userInfo).subscribe((result: any) => {
-      this.spinner.hide();
       this.openSnackBar(result.message, '')
       if (result.status) {
         console.log(result);
         this.data.saveUser(result.data);
         return this.router.navigateByUrl("/home");
       }
+      this.spinner.hide();
       return;
     }, (err) => {
       this.spinner.hide();

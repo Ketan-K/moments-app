@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../services/api.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,16 @@ export class HomeComponent implements OnInit {
   show = 'list';
   moments = [];
   constructor(private api: ApiService,
+    private data: DataService,
     private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
     this.getMoments();
+  }
+
+  getScreenWidth() {
+    return window.innerWidth;
   }
 
   getMoments() {
@@ -29,7 +35,13 @@ export class HomeComponent implements OnInit {
     }, (err) => {
       this.spinner.hide();
     })
+  }
 
+  logout() {
+    this.spinner.show();
+    this.data.eraseData()
+    this.moments = [];
+    this.spinner.hide();
   }
 
 }

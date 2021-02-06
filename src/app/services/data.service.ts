@@ -16,7 +16,12 @@ export class DataService {
   }
 
   getUser() {
-    return JSON.parse(localStorage.getItem('userInfo') || '{}');
+    return this.userInfo || JSON.parse(localStorage.getItem('userInfo') || '{}');
+  }
+
+  eraseData() {
+    this.userInfo = null;
+    return localStorage.clear();
   }
 
 }

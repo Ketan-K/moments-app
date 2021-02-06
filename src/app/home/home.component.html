@@ -1,5 +1,5 @@
 <mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side" opened=true>
+    <mat-drawer #drawer class="sidenav" mode="side" [opened]="getScreenWidth() > 480">
         <span class="spacer center">
             <span class="logo">
                 <img src="assets/5d.png" alt="Logo">
@@ -38,10 +38,14 @@
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <button mat-icon-button class="example-icon right" aria-label="Profile">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon right" aria-label="Profile">
                 <mat-icon>person</mat-icon>
                 <mat-icon>expand_more</mat-icon>
-
+                <mat-menu #menu="matMenu">
+                    <button (click)="logout()" routerLink='/login' mat-menu-item>Logout &nbsp; <mat-icon>logout
+                        </mat-icon> </button>
+                    <!-- <button mat-menu-item>Item 2</button> -->
+                </mat-menu>
             </button>
         </mat-toolbar>
     </p>
