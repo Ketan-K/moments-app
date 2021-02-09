@@ -17,6 +17,7 @@ import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
 import { MomentsTableComponent } from './moments-table/moments-table.component';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     AppRoutingModule,
     FormsModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

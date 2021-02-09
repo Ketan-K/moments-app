@@ -14,6 +14,10 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}${path}`, data)
   }
 
+  makePutReq(path: string, data: any) {
+    return this.http.put(`${this.apiUrl}${path}`, data)
+  }
+
   makeGetReq(path: string) {
     return this.http.get(`${this.apiUrl}${path}`)
   }
@@ -34,8 +38,12 @@ export class ApiService {
     return this.makePostReq('/moments', moment);
   }
 
-  getMoments() {
-    return this.makeGetReq('/moments');
+  updateMoment(moment: any) {
+    return this.makePutReq('/moments', moment);
+  }
+
+  getMoments(page: number, docPerPage: number) {
+    return this.makeGetReq(`/moments/${docPerPage}/${page}`);
   }
 
   uploadFile(file: File): Observable<HttpEvent<any>> {

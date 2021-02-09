@@ -19,22 +19,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getMoments();
   }
 
   getScreenWidth() {
     return window.innerWidth;
-  }
-
-  getMoments() {
-    this.spinner.show();
-    this.api.getMoments().subscribe((result: any) => {
-      this.spinner.hide();
-      console.log(result);
-      this.moments = result.data || [];
-    }, (err) => {
-      this.spinner.hide();
-    })
   }
 
   onAdded(moment: any) {

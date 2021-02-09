@@ -39,7 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonToggleModule,
     MatExpansionModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ]
 })
 export class MaterialModule { }

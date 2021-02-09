@@ -70,7 +70,8 @@ export class MomentsComponent implements OnInit {
   addMoment() {
     if (!this.validateInputs(this.moment)) { return; };
     this.spinner.show();
-    this.api.addMoment(this.moment).subscribe((result: any) => {
+    let updateOrAdd = this.moment.momentID ? this.api.updateMoment(this.moment) : this.api.addMoment(this.moment);
+    updateOrAdd.subscribe((result: any) => {
       this.spinner.hide();
       this.openSnackBar(result.message, '')
       if (result.status) {
@@ -78,7 +79,7 @@ export class MomentsComponent implements OnInit {
         this.moment = {
           momentID: null,
           title: '',
-          tags: this.moment.tags = [],
+          tags: [],
           imageUrl: '',
           file: null
         }
