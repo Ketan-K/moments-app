@@ -30,6 +30,11 @@ export class SignUpComponent implements OnInit {
     this.breakpoint = (window.innerWidth <= 650) ? 1 : 2;
   }
 
+  validateEmail(email: string) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   onResize(event: any) {
     this.breakpoint = (event.target.innerWidth <= 650) ? 1 : 2;
   }
@@ -42,11 +47,10 @@ export class SignUpComponent implements OnInit {
   validateInputs(userInfo: any) {
     if (!userInfo.firstname) { this.openSnackBar('Please enter first name.', ''); return false }
     if (!userInfo.lastname) { this.openSnackBar('Please enter last name.', ''); return false }
-    if (!userInfo.mobile) { this.openSnackBar('Please enter mobile no.', ''); return false }
-    if (!userInfo.email) { this.openSnackBar('Please enter email id.', ''); return false }
+    if (!(userInfo.mobile && userInfo.mobile.toString().length == 10)) { this.openSnackBar('Please enter valid mobile no.', ''); return false }
+    if (!(userInfo.email && this.validateEmail(userInfo.email))) { this.openSnackBar('Please enter a valid email id.', ''); return false }
     if (!userInfo.city) { this.openSnackBar('Please enter city.', ''); return false }
-    if (!userInfo.password) { this.openSnackBar('Please enter password.', ''); return false }
-    return true;
+    if (!(userInfo.password && userInfo.password.length >= 6)) { this.openSnackBar('Please enter a valid password.', ''); return false } return true;
   }
 
   signUp(userInfo: any) {

@@ -31,14 +31,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  validateEmail(email: string) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
   }
   validateInputs(userInfo: any) {
-    if (!userInfo.email) { this.openSnackBar('Please enter email id.', ''); return false }
-    if (!userInfo.password) { this.openSnackBar('Please enter password.', ''); return false }
+    if (!(userInfo.email && this.validateEmail(userInfo.email))) { this.openSnackBar('Please enter a valid email id.', ''); return false }
+    if (!(userInfo.password && userInfo.password.length >= 6)) { this.openSnackBar('Please enter a valid password.', ''); return false }
     return true;
   }
   login(userInfo: any) {
